@@ -36,24 +36,24 @@ import java.util.List;
 public class Recycler extends AppCompatActivity implements adapterdatos.OnRecyclerListener {
 
     private static final String TAG = "RecycleView";
-     Button btn_mqtt;
-     Button next_graph;
-     TextView tv_name;
+    private Button btn_mqtt;
+    private Button next_graph;
+    private TextView tv_name;
 
-    ArrayList<String> listDatos = new ArrayList<String>(); //lista igual a la anterior
-    ArrayList<String> listSchedules = new ArrayList<String>(); //lista igual a la anterior
-    ArrayList<Location> listLoc = new ArrayList<Location>();
-    RecyclerView recycler;
-    RecyclerView.RecyclerListener listener;
-    Button list_view_centers;
+    private ArrayList<String> listDatos = new ArrayList<String>(); //lista igual a la anterior
+    private ArrayList<String> listSchedules = new ArrayList<String>(); //lista igual a la anterior
+    private ArrayList<Location> listLoc = new ArrayList<Location>();
+    private RecyclerView recycler;
+    private RecyclerView.RecyclerListener listener;
+    private Button list_view_centers;
 
-    Handler mainHandler;
+    private Handler mainHandler;
 
     {
         mainHandler = new Handler();
     }
 
-    ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

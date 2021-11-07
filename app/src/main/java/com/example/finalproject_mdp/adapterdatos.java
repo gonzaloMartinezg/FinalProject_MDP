@@ -16,12 +16,12 @@ import java.util.ArrayList;
 public class adapterdatos extends RecyclerView.Adapter<adapterdatos.ViewHolderDatos> {
 
     //recibe lista para mostrar en el recycler
-    ArrayList<String> listDatos;
-    ArrayList<String> listSchedules;
-    Context context;
+    private ArrayList<String> listDatos;
+    private ArrayList<String> listSchedules;
+    private Context context;
     private static final String TAG = "NotesRecyclerAdapter";
    // private OnRecyclerListener onRecyclerListener;
-     OnRecyclerListener monRecyclerListener;
+   private OnRecyclerListener monRecyclerListener;
 
     //constructor
     public adapterdatos(Context context, ArrayList<String> listDatos,ArrayList<String> listSchedules, OnRecyclerListener onRecyclerListener) {
