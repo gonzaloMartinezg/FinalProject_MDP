@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">FinalProject_MDP</string>
+    <string name="tv_messages">MESSAGES</string>
+    <string name="tv_write">Write your message</string>
+    <string name="tv_log">Here you can see your messages</string>
+    <string name="btn_send">Send</string>
+    <string name="step_off">Step\nOFF</string>
+    <string name="step_on">Step\nON</string>
+    <string name="tv_step">Step Detector</string>
+    <string name="tv_step_measures">Step detector is OFF</string>
+    <string name="step_off_btn">Step\nOFF</string>
+    <string name="step_on_btn">Step\nON</string>
+    <string name="checkB_soccer">Soccer</string>
+    <string name="checkB_tennis">Tennis</string>
+    <string name="tv_listofcenters">List of Centers</string>
+</resources>
