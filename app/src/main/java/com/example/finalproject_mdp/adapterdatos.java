@@ -52,7 +52,7 @@ public class adapterdatos extends RecyclerView.Adapter<adapterdatos.ViewHolderDa
         return listDatos.size();
     }
 
-    //mostrar datos
+    //show data and click implementation
     public class ViewHolderDatos extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView tvDatos;
         TextView tvschedules;
@@ -70,7 +70,7 @@ public class adapterdatos extends RecyclerView.Adapter<adapterdatos.ViewHolderDa
             onRecyclerListener.onRecyclerClick(getAdapterPosition());
         }
     }
-
+    // Click Listener interface for Recycle View
     public interface OnRecyclerListener{
         void onRecyclerClick(int position);
     }

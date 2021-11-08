@@ -137,10 +137,13 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
 
     @Override
     public void onRecyclerClick(int position) {
-      //  listLocation.get(position).toString();
-      //  Intent intent = new Intent(this, NewActivity.class);
-      //  intent.putExtra();
-     //   startActivity(intent);
+        //listLocation.get(position).toString();
+        Location l = listLoc.get(position);
+
+        Intent intent = new Intent(this, MapsSportCenters.class);
+        intent.putExtra("lat",l.getLatitude());
+        intent.putExtra("long",l.getLongitude());
+        startActivity(intent);
         Log.d(TAG,listLoc.get(position).toString());
         Log.d(TAG,"OnRecycle click: clicked");
     }
