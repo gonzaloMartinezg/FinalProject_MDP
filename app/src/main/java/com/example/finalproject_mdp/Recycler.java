@@ -42,7 +42,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
 
     private ArrayList<String> listDatos = new ArrayList<String>(); //lista igual a la anterior
     private ArrayList<String> listSchedules = new ArrayList<String>(); //lista igual a la anterior
-    private ArrayList<Location> listLoc = new ArrayList<Location>();
+    private ArrayList<LocationJSON> listLoc = new ArrayList<LocationJSON>();
     private RecyclerView recycler;
     private RecyclerView.RecyclerListener listener;
     private Button list_view_centers;
@@ -138,7 +138,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
     @Override
     public void onRecyclerClick(int position) {
         //listLocation.get(position).toString();
-        Location l = listLoc.get(position);
+        LocationJSON l = listLoc.get(position);
 
         Intent intent = new Intent(this, MapsSportCenters.class);
         intent.putExtra("lat",l.getLatitude());
@@ -147,10 +147,10 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
         Log.d(TAG,listLoc.get(position).toString());
         Log.d(TAG,"OnRecycle click: clicked");
     }
-    class Location{
+    class LocationJSON{
         double latitude;
         double longitude;
-        public Location(double latitude, double longitude){
+        public LocationJSON(double latitude, double longitude){
             this.latitude = latitude;
             this.longitude = longitude;
 
@@ -177,24 +177,6 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
     class fetchData extends Thread{
         //WE SAVE THE JSON FILE IN DATA VARIABLE
         String data = "";
-       public Location readLoc(JsonReader reader) throws IOException {
-            double latitude = 0;
-            double longitude = 0;
-
-            reader.beginObject();
-            while (reader.hasNext()) {
-                String name = reader.nextName();
-                if (name.equals("latitude")) {
-                    latitude = reader.nextDouble();
-                } else if (name.equals("longitude")) {
-                    longitude = reader.nextDouble();
-                } else {
-                    reader.skipValue();
-                }
-            }
-            reader.endObject();
-            return new Location(latitude, longitude);
-        }
         public void run(){
 
             mainHandler.post(new Runnable() {
@@ -241,7 +223,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
                         JSONObject location = titles.getJSONObject("location");
                         double latitude = location.getDouble("latitude");
                         double longitude = location.getDouble("longitude");
-                        Location l = new Location(latitude,longitude);
+                        LocationJSON l = new LocationJSON(latitude,longitude);
                         listLoc.add(l);
                     }
 
