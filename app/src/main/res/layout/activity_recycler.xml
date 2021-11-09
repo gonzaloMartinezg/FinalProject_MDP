@@ -12,18 +12,23 @@
         android:id="@+id/tv_hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="40dp">
-    </TextView>
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"></TextView>
 
     <TextView
+        android:id="@+id/tv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_list"
-        android:text="@string/tv_listofcenters"
-        android:textSize="30dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp">
-    </TextView>
+        android:layout_marginBottom="10dp"
+        android:gravity="center"
+        android:text="@string/tv_listofcenters"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"></TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerId"
