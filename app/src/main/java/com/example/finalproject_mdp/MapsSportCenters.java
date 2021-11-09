@@ -13,7 +13,9 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -44,6 +46,7 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
     Marker markerCurrent;
     int LOCATION_REQUEST_CODE = 10001;
     LocationManager locationManager;
+    private static final String TAG = "MAPS ICON";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -172,10 +175,13 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
 
         Double latitud = getIntent().getDoubleExtra("lat",0);
         Double longitud = getIntent().getDoubleExtra("long",0);
-
+        String soccer = getIntent().getStringExtra("soccer");
+        String tennis = getIntent().getStringExtra("tennis");
+       // Log.d(TAG,tennis);
+        String soccer_tennis = getIntent().getStringExtra("soccer_tennis");
         // Add a marker in Sydney and move the camera
         LatLng locSportCenter = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker").icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_baseline_sports_tennis_24)));
+        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_directions_run_24)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locSportCenter));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locSportCenter,15));
     }

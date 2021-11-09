@@ -46,7 +46,9 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
     private RecyclerView recycler;
     private RecyclerView.RecyclerListener listener;
     private Button list_view_centers;
-
+    String soccer;
+    String tennis;
+    String soccer_tennis;
     private Handler mainHandler;
 
     {
@@ -68,9 +70,9 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
 
 
         String name = getIntent().getStringExtra("name");
-        String soccer = getIntent().getStringExtra("soccer");
-        String tennis = getIntent().getStringExtra("tennis");
-        String soccer_tennis = getIntent().getStringExtra("soccer_tennis");
+        soccer = getIntent().getStringExtra("soccer");
+        tennis = getIntent().getStringExtra("tennis");
+        soccer_tennis = getIntent().getStringExtra("soccer_tennis");
 
         tv_name.setText("Hello " + name);
 
@@ -143,6 +145,9 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
         Intent intent = new Intent(this, MapsSportCenters.class);
         intent.putExtra("lat",l.getLatitude());
         intent.putExtra("long",l.getLongitude());
+        intent.putExtra("tennis",tennis);
+        intent.putExtra("soccer",soccer);
+        intent.putExtra("soccer_tennis",soccer_tennis);
         startActivity(intent);
         Log.d(TAG,listLoc.get(position).toString());
         Log.d(TAG,"OnRecycle click: clicked");

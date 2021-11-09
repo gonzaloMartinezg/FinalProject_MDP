@@ -73,7 +73,7 @@
             android:text="Clean"
 
             android:textStyle="bold"
-            app:backgroundTint="?attr/colorPrimaryVariant" />
+            app:backgroundTint="?attr/colorSecondaryVariant" />
 
         <Button
             android:id="@+id/bSubmit"
@@ -86,7 +86,7 @@
             android:onClick="activity_recycler"
             android:text="Submit"
             android:textStyle="bold"
-            app:backgroundTint="#9C27B0" />
+            app:backgroundTint="@android:color/holo_red_light" />
 
 
     </RelativeLayout>
