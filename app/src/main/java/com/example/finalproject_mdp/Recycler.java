@@ -1,6 +1,7 @@
 package com.example.finalproject_mdp;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,6 +62,8 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler);
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar_ly);
 
         btn_mqtt = findViewById(R.id.btn_mqtt);
         next_graph = findViewById(R.id.btn_next_graph);

@@ -51,7 +51,6 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         binding = ActivityMapsSportCentersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
