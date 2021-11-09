@@ -8,6 +8,9 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -171,9 +175,19 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
 
         // Add a marker in Sydney and move the camera
         LatLng locSportCenter = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker").icon(BitmapDescriptorFactory.fromResource(R.drawable.tennis)));
+        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker").icon(bitmapDescriptorFromVector(getApplicationContext(),R.drawable.ic_baseline_sports_tennis_24)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locSportCenter));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locSportCenter,15));
+    }
+    private BitmapDescriptor bitmapDescriptorFromVector(Context context,int vectorResId){
+        Drawable vectorDrawable = ContextCompat.getDrawable(context,vectorResId);
+
+        vectorDrawable.setBounds(0,0,vectorDrawable.getIntrinsicWidth(),
+                vectorDrawable.getIntrinsicHeight());
+        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),vectorDrawable.getIntrinsicHeight(),Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        vectorDrawable.draw(canvas);
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
     }
     private void getLocationUser() {
 
