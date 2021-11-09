@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalProject_MDP</string>
+    <string name="app_name">Sport Centers</string>
     <string name="tv_messages">MESSAGES</string>
     <string name="tv_write">Write your message</string>
     <string name="tv_log">Here you can see your messages</string>
@@ -10,7 +10,7 @@
     <string name="tv_step_measures">Step detector is OFF</string>
     <string name="step_off_btn">Step\nOFF</string>
     <string name="step_on_btn">Step\nON</string>
-    <string name="checkB_soccer">Soccer</string>
+    <string name="checkB_soccer">Football</string>
     <string name="checkB_tennis">Tennis</string>
     <string name="tv_listofcenters">List of Centers</string>
     <string name="title_activity_maps_sport_centers">MapsSportCenters</string>

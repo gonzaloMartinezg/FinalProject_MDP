@@ -21,6 +21,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -170,7 +171,7 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
 
         // Add a marker in Sydney and move the camera
         LatLng locSportCenter = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker"));
+        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker").icon(BitmapDescriptorFactory.fromResource(R.drawable.tennis)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locSportCenter));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locSportCenter,15));
     }
@@ -192,6 +193,7 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
             @Override
             public void onSuccess(Location location) {
                 if(removeMarker == false) {
+                   // markerCurrent.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tennis));
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                     markerCurrent = mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position"));
                     //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10)); it is only to move camera

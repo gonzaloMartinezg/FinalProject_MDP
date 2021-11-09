@@ -3,11 +3,13 @@ package com.example.finalproject_mdp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText et2_surname;
     CheckBox cB_soccer;
     CheckBox cB_tennis;
+    ImageView IfutbolTennis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,49 @@ public class MainActivity extends AppCompatActivity {
         bt_submit = findViewById(R.id.bSubmit);
         cB_soccer = findViewById(R.id.checkBox_soccer);
         cB_tennis = findViewById(R.id.checkBox_tennis);
+        IfutbolTennis = findViewById(R.id.imageView);
 
         bt_Clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 et1_name.getText().clear();
                 et2_surname.getText().clear();
+            }
+        });
+        cB_soccer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cB_soccer.isChecked()) {
+                    IfutbolTennis.setImageResource(R.drawable.futbol);
+                    if (cB_tennis.isChecked()) {
+                        IfutbolTennis.setImageResource(R.drawable.sportscenter);
+                    }
+                } else {
+                    if (cB_tennis.isChecked()) {
+                        IfutbolTennis.setImageResource(R.drawable.tenniscourt);
+                    } else {
+                        IfutbolTennis.setImageResource(R.drawable.sportscenter);
+                    }
+                }
+            }
+
+        });
+        cB_tennis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cB_tennis.isChecked()){
+                IfutbolTennis.setImageResource(R.drawable.tenniscourt);
+                    if(cB_soccer.isChecked()){
+                        IfutbolTennis.setImageResource(R.drawable.sportscenter);
+                    }
+                }
+                else {
+                    if (cB_soccer.isChecked()){
+                        IfutbolTennis.setImageResource(R.drawable.futbol);}
+                    else {
+                        IfutbolTennis.setImageResource(R.drawable.sportscenter);
+                    }
+                }
             }
         });
 
@@ -52,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (cB_soccer.isChecked()){
             i_act_recycler.putExtra("soccer",cB_soccer.getText().toString());
+
         }
         if (cB_tennis.isChecked()){
             i_act_recycler.putExtra("tennis",cB_tennis.getText().toString());

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -11,44 +12,55 @@
         android:id="@+id/et1"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:hint="Name"
-        />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
     <EditText
         android:id="@+id/et2"
         android:layout_width="300dp"
         android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:hint="Surname"
-        />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:orientation="horizontal">
+
         <CheckBox
             android:id="@+id/checkBox_soccer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="80dp"
             android:text="@string/checkB_soccer"
-            />
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <CheckBox
             android:id="@+id/checkBox_tennis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="@string/checkB_tennis"
-            />
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
 
         <Button
             android:id="@+id/clean_btn"
@@ -57,9 +69,11 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="200dp"
+            android:layout_marginBottom="20dp"
             android:text="Clean"
 
-            />
+            android:textStyle="bold"
+            app:backgroundTint="?attr/colorPrimaryVariant" />
 
         <Button
             android:id="@+id/bSubmit"
@@ -68,18 +82,23 @@
             android:layout_marginLeft="220dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="40dp"
+            android:layout_marginBottom="20dp"
             android:onClick="activity_recycler"
-            android:text="Submit" />
+            android:text="Submit"
+            android:textStyle="bold"
+            app:backgroundTint="#9C27B0" />
 
 
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="189dp"
-        android:layout_height="170dp"
-        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        app:srcCompat="@drawable/futbol" />
+        android:src="@drawable/sportscenter"
+       />
+
 </LinearLayout>
