@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.JsonReader;
@@ -47,6 +49,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
     private RecyclerView recycler;
     private RecyclerView.RecyclerListener listener;
     private Button list_view_centers;
+    private Boolean centersListed = false;
     String soccer;
     String tennis;
     String soccer_tennis;
@@ -64,7 +67,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
         setContentView(R.layout.activity_recycler);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_ly);
-
+        centersListed = false;
         btn_mqtt = findViewById(R.id.btn_mqtt);
         next_graph = findViewById(R.id.btn_next_graph);
         tv_name = findViewById(R.id.tv_hello);
@@ -132,7 +135,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
             @Override
             public void onClick(View view) {
                 new fetchData().start();
-
+                centersListed = true;
                 //recycler.setLayoutManager(new LinearLayoutManager(Recycler.this,LinearLayoutManager.VERTICAL,false));
 
             }
@@ -140,6 +143,28 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("centersListed",centersListed);
+        editor.commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        centersListed = sharedPref.getBoolean("centersListed",false);
+
+        if (centersListed) {
+            new fetchData().start();
+        }
+
+
+    }
     @Override
     public void onRecyclerClick(int position) {
         //listLocation.get(position).toString();

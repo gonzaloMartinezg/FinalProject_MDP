@@ -3,7 +3,9 @@ package com.example.finalproject_mdp;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
@@ -84,7 +86,39 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("football",cB_soccer.isChecked());
+        editor.putBoolean("tennis", cB_tennis.isChecked());
+        editor.commit();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        cB_soccer.setChecked(sharedPref.getBoolean("football",false));
+        cB_tennis.setChecked(sharedPref.getBoolean("tennis",false));
+
+        if (cB_tennis.isChecked()){
+            IfutbolTennis.setImageResource(R.drawable.tenniscourt);
+            if(cB_soccer.isChecked()){
+                IfutbolTennis.setImageResource(R.drawable.sportscenter);
+            }
+        }
+        else {
+            if (cB_soccer.isChecked()){
+                IfutbolTennis.setImageResource(R.drawable.futbol);}
+            else {
+                IfutbolTennis.setImageResource(R.drawable.sportscenter);
+            }
+        }
+
+    }
     public void activity_recycler (View view){
         Intent i_act_recycler = new Intent(this,Recycler.class);
         i_act_recycler.putExtra("name",et1_name.getText().toString());
