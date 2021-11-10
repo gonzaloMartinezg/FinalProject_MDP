@@ -54,7 +54,7 @@
             android:id="@+id/btn_mqtt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MQTT"
+            android:text="Messages"
             android:layout_marginTop="20dp"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
@@ -66,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Graph"
+            android:text="Step Sensor"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginBottom="2dp">
