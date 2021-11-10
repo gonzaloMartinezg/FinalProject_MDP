@@ -34,7 +34,8 @@ public class mqtt extends AppCompatActivity {
     String publishTopic;
     String publishMessage;
     MqttAndroidClient mqttAndroidClient;
-    String clientId = "ExampleAndroidClient";
+    //String clientId = "ExampleAndroidClient";
+    String clientId;
     private HistoryAdapter mAdapter;
 
     @Override
@@ -49,6 +50,9 @@ public class mqtt extends AppCompatActivity {
         String soccer = getIntent().getStringExtra("soccer");
         String tennis = getIntent().getStringExtra("tennis");
         String soccer_tennis = getIntent().getStringExtra("soccer_tennis");
+        String name = getIntent().getStringExtra("name");
+        clientId = name;
+
         if (soccer!=null&&soccer_tennis==null){
             publishTopic = "sports/"+soccer;
             subscriptionTopic = "sports/"+soccer;
@@ -106,7 +110,8 @@ public class mqtt extends AppCompatActivity {
 
             @Override
             public void messageArrived(String topic, MqttMessage message) {
-                addToHistory("Incoming message: " + new String(message.getPayload()));
+                //addToHistory("Incoming message: " + new String(message.getPayload()));
+                addToHistory(new String(message.getPayload()));
             }
 
             @Override
@@ -177,13 +182,15 @@ public class mqtt extends AppCompatActivity {
     public void publishMessage() {
         MqttMessage message = new MqttMessage();
         //get the text from edit text
-        publishMessage = edittext_write.getText().toString();
+       // publishMessage = edittext_write.getText().toString();
+        publishMessage = clientId + " : " + edittext_write.getText().toString();
         message.setPayload(publishMessage.getBytes());
         message.setRetained(false);
         message.setQos(0);
         try {
             mqttAndroidClient.publish(publishTopic, message);
-            addToHistory("Message Published: " + publishMessage);
+          //  addToHistory("Message Published: " + publishMessage);
+
         } catch (Exception e) {
             e.printStackTrace();
             addToHistory(e.toString());

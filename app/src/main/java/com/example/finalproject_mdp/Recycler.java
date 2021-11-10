@@ -48,7 +48,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
     private ArrayList<LocationJSON> listLoc = new ArrayList<LocationJSON>();
     private RecyclerView recycler;
     private RecyclerView.RecyclerListener listener;
-    private Button list_view_centers;
+ //   private Button list_view_centers;
     private Boolean centersListed = false;
     String soccer;
     String tennis;
@@ -67,12 +67,11 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
         setContentView(R.layout.activity_recycler);
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_ly);
-        centersListed = false;
         btn_mqtt = findViewById(R.id.btn_mqtt);
         next_graph = findViewById(R.id.btn_next_graph);
         tv_name = findViewById(R.id.tv_hello);
         recycler = findViewById(R.id.recyclerId);
-        list_view_centers = findViewById(R.id.btn_list);
+      //  list_view_centers = findViewById(R.id.btn_list);
 
 
         String name = getIntent().getStringExtra("name");
@@ -82,6 +81,8 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
 
         tv_name.setText("Hello " + name);
 
+        new fetchData().start();
+        centersListed = true;
 
 
 //  call the constructor of CustomAdapter to send the reference and data to Adapter
@@ -119,6 +120,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
                 i_mqtt.putExtra("soccer_tennis",soccer_tennis);
                 i_mqtt.putExtra("soccer",soccer);
                 i_mqtt.putExtra("tennis",tennis);
+                i_mqtt.putExtra("name",name);
                 startActivity(i_mqtt);
             }
         });
@@ -131,7 +133,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
             }
         });
 
-        list_view_centers.setOnClickListener(new View.OnClickListener() {
+       /* list_view_centers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new fetchData().start();
@@ -139,7 +141,7 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
                 //recycler.setLayoutManager(new LinearLayoutManager(Recycler.this,LinearLayoutManager.VERTICAL,false));
 
             }
-        });
+        }); */
 
     }
 

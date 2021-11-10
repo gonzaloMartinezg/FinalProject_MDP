@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 et1_name.getText().clear();
                 et2_surname.getText().clear();
+                cB_soccer.setChecked(false);
+                cB_tennis.setChecked(false);
             }
         });
         cB_soccer.setOnClickListener(new View.OnClickListener() {
@@ -133,9 +136,12 @@ public class MainActivity extends AppCompatActivity {
         if (cB_tennis.isChecked()){
             i_act_recycler.putExtra("tennis",cB_tennis.getText().toString());
         }
-        if(!cB_soccer.isChecked()&&!cB_tennis.isChecked()){
-            Toast.makeText(MainActivity.this, "Please select at least 1 item", Toast.LENGTH_SHORT).show();
-        }else {
+        if((!cB_soccer.isChecked()&&!cB_tennis.isChecked()) ||
+                TextUtils.isEmpty(et1_name.getText().toString()) ||
+                TextUtils.isEmpty(et2_surname.getText().toString())){
+            Toast.makeText(MainActivity.this, "Please complete all the information",
+                    Toast.LENGTH_SHORT).show();}
+            else {
             startActivity(i_act_recycler);
         }
     }
