@@ -180,7 +180,7 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
         String soccer_tennis = getIntent().getStringExtra("soccer_tennis");
         // Add a marker in Sydney and move the camera
         LatLng locSportCenter = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Marker").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_directions_run_24)));
+        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Sport Center").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_directions_run_24)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locSportCenter));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locSportCenter,15));
     }
