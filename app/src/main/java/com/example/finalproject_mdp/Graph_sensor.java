@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -87,7 +88,7 @@ public class Graph_sensor extends AppCompatActivity implements SensorEventListen
                     sensorManager.unregisterListener(Graph_sensor.this, StepSensor);
                     step_btn.setText(R.string.step_off_btn);
                     step_btn.setBackground(getResources().getDrawable(R.drawable.round_button_off));
-                    tv_measures_steps.setText("Light sensor is OFF");
+                    tv_measures_steps.setText("Step sensor is OFF");
                     stepSensorIsActive = false;
                 } else {
                     // register listener and make the appropriate changes in the UI:
@@ -132,6 +133,62 @@ public class Graph_sensor extends AppCompatActivity implements SensorEventListen
 
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("stepSensor",stepSensorIsActive);
+        editor.putInt("stepCounter", count1);
+        editor.commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+
+        stepSensorIsActive = sharedPref.getBoolean("stepSensor",false);
+        count1 = sharedPref.getInt("stepCounter",0);
+        if (!stepSensorIsActive) {
+            // unregister listener and make the appropriate changes in the UI:
+            sensorManager.unregisterListener(Graph_sensor.this, StepSensor);
+            step_btn.setText(R.string.step_off_btn);
+            step_btn.setBackground(getResources().getDrawable(R.drawable.round_button_off));
+            tv_measures_steps.setText("Step sensor is OFF");
+        } else {
+            // register listener and make the appropriate changes in the UI:
+            sensorManager.registerListener(Graph_sensor.this, StepSensor, SensorManager.SENSOR_DELAY_NORMAL);
+            step_btn.setText(R.string.step_on_btn);
+            step_btn.setBackground(getResources().getDrawable(R.drawable.round_button_on));
+            tv_measures_steps.setText("Waiting for step sensor");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    do {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                entriesLight.add(new Entry(entriesLight.size(),count1));
+                                dataSetLight.notifyDataSetChanged();
+                                lineData.notifyDataChanged();
+                                chart.notifyDataSetChanged();
+                                chart.invalidate(); // refresh
+                            }
+                        });
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    while (stepSensorIsActive == true);
+                }
+            }).start();
+        }
+
+    }
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         // Code to make vibrate the device

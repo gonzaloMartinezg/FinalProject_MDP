@@ -98,9 +98,8 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
             return;
         }
         mMap.setMyLocationEnabled(true);
-      //  Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-        Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        Location locationGPS = new Location("");
+        locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         if (locationGPS != null) {
             double lat = locationGPS.getLatitude();
             double longi = locationGPS.getLongitude();
@@ -180,7 +179,7 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
         String soccer_tennis = getIntent().getStringExtra("soccer_tennis");
         // Add a marker in Sydney and move the camera
         LatLng locSportCenter = new LatLng(latitud, longitud);
-        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Sport Center").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_directions_run_24)));
+        mMap.addMarker(new MarkerOptions().position(locSportCenter).title("Sport Center").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_sports_soccer_24)));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(locSportCenter));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(locSportCenter,15));
     }
@@ -214,7 +213,7 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
                 if(removeMarker == false) {
                    // markerCurrent.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tennis));
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    markerCurrent = mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position"));
+                    markerCurrent = mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_directions_run_24)));
                     //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10)); it is only to move camera
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15)); //animate camera
                     removeMarker = true;

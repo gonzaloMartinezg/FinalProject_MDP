@@ -88,28 +88,6 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
 //  call the constructor of CustomAdapter to send the reference and data to Adapter
         adapterdatos customAdapter = new adapterdatos(Recycler.this, listDatos, listSchedules, this::onRecyclerClick);
         recycler.setAdapter(customAdapter); // set the Adapter to RecyclerView
-      //  recycler.addOnScrollListener();
-      /*  recycler.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-            @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                return true;
-            }
-
-            @Override
-            public void c(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
-                Log.i(TAG, "onTouchEvent: " + " touched by type " + e);
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "DisallowInterceptTouchEvent",
-                        Toast.LENGTH_SHORT);
-
-                toast.show();
-            }
-        }); */
-
 
         //TOPICS ARE SENDING TO MQTT
         btn_mqtt.setOnClickListener(new View.OnClickListener() {
@@ -133,37 +111,17 @@ public class Recycler extends AppCompatActivity implements adapterdatos.OnRecycl
             }
         });
 
-       /* list_view_centers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new fetchData().start();
-                centersListed = true;
-                //recycler.setLayoutManager(new LinearLayoutManager(Recycler.this,LinearLayoutManager.VERTICAL,false));
-
-            }
-        }); */
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("centersListed",centersListed);
-        editor.commit();
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-
-        centersListed = sharedPref.getBoolean("centersListed",false);
-
-        if (centersListed) {
-            new fetchData().start();
-        }
 
 
     }
