@@ -25,11 +25,14 @@
             android:background="@drawable/round_button_off"
             android:text="@string/step_off"
             android:textAllCaps="false" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="20dp"
             android:layout_marginTop="10dp">
 
             <TextView
@@ -53,6 +56,17 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_step2"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:layout_marginTop="38dp"
+            android:background="@drawable/round_button_on"
+            android:text="@string/step_clear"
+            android:textAllCaps="false"
+            android:textSize="20dp" />
 
     </LinearLayout>
     <com.github.mikephil.charting.charts.LineChart

@@ -31,6 +31,7 @@ import java.util.List;
 public class Graph_sensor extends AppCompatActivity implements SensorEventListener {
 
     Button step_btn;
+    Button step_btn2;
     TextView tv_measures_steps;
     private SensorManager sensorManager;
     private Sensor StepSensor;
@@ -56,6 +57,7 @@ public class Graph_sensor extends AppCompatActivity implements SensorEventListen
         //Set sensor
         stepSensorIsActive = false;
         step_btn = findViewById(R.id.btn_step);
+        step_btn2 = findViewById(R.id.btn_step2);
         tv_measures_steps = findViewById(R.id.tv_measures_stepdetector);
 
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
@@ -79,7 +81,12 @@ public class Graph_sensor extends AppCompatActivity implements SensorEventListen
 
         //customize line chart
         chart.setNoDataText("No data for the moment");
-
+        step_btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count1 = 0;
+            }
+        });
         step_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
