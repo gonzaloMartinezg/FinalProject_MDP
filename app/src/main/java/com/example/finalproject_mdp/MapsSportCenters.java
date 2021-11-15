@@ -210,14 +210,14 @@ public class MapsSportCenters extends FragmentActivity implements OnMapReadyCall
         locationTask.addOnSuccessListener(new OnSuccessListener<Location>() {
             @Override
             public void onSuccess(Location location) {
-                if(removeMarker == false) {
+                //if(removeMarker == false) {
                    // markerCurrent.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.tennis));
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                     markerCurrent = mMap.addMarker(new MarkerOptions().position(latLng).title("Current Position").icon(bitmapDescriptorFromVector(getApplicationContext(), R.drawable.ic_baseline_directions_run_24)));
                     //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng,10)); it is only to move camera
                     mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15)); //animate camera
                     removeMarker = true;
-                }
+                //}
             }
         });
 
